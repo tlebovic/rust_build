@@ -43,8 +43,13 @@ RUN apt-get update \
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
 
-# install musl libc for static binaries 
+# Install musl libc for static binaries 
 RUN apt-get install -y musl musl-dev musl-tools
+
+# Install couchbase sdk
+RUN wget http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-6-amd64.deb
+RUN dpkg -i couchbase-release-1.0-6-amd64.deb
+RUN apt-get install -y  libcouchbase-dev libcouchbase2-bin build-essential
 
 
 WORKDIR /project_src
